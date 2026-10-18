@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Little World of Nitya</title>
+  <meta name="description" content="A personalized, interactive birthday scrapbook and celebration microsite for Nitya." />
+  <meta property="og:title" content="A Little World of Nitya" />
+  <meta property="og:description" content="A personalized, interactive birthday scrapbook and celebration microsite for Nitya." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Birthday Cake Favicon (zero 404s, self-contained SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85'>🎂</text></svg>" />
+
+  <!-- Google Fonts: Playfair Display (Serif), Caveat (Handwriting), Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <!-- Fullscreen Confetti Particle Canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ========================================================================
+       SCREEN 1: THE SURPRISE INVITATION ENVELOPE
+       ======================================================================== -->
+  <div id="surprise-overlay" class="surprise-overlay" role="dialog" aria-modal="true" aria-label="A special birthday surprise for Nitya">
+    <div class="envelope-card">
+      <div class="envelope-graphic" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+          <path d="M18 14v4h4" />
+          <path d="M22 14v4h-4" />
+        </svg>
+      </div>
+      <h2 class="envelope-title">A little something,<br />just for you ✨</h2>
+      <p id="envelope-subtitle" class="envelope-subtitle">A special celebration for Nitya ✨</p>
+      <p class="envelope-text">A personal collection of moments, laughs, memories, and birthday wishes packaged with warmth.</p>
+      <button id="open-surprise-btn" class="btn btn-primary btn-gold" aria-label="Open your birthday surprise">
+        <span>Open your surprise</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TOP NAVIGATION BAR (Compact, single-line across mobile & desktop)
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#hero-section" class="brand-title">
+        <span class="brand-full">A Little World of Nitya</span>
+        <span class="brand-short">Nitya</span>
+        <span class="text-gold" aria-hidden="true">✨</span>
+      </a>
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#scrapbook-section" class="header-link">Memories</a>
+        <a href="#wish-section" class="header-link">Wish</a>
+        <a href="#letter-section" class="header-link">Letter</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         SCREEN 2: THE BIRTHDAY HERO SECTION
+         ====================================================================== -->
+    <section id="hero-section" class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <p id="hero-sub" class="hero-kicker">A special day for someone truly special.</p>
+          <h1 id="hero-title" class="hero-title">Happy Birthday, Nitya!</h1>
+          <p class="hero-subtitle">
+            Welcome to your own little digital scrapbook, celebrating every laugh, festive celebration, and candid memory that makes you so special.
+          </p>
+          <div class="hero-actions">
+            <a href="#scrapbook-section" class="btn btn-primary">
+              <span>Explore the memories ↓</span>
+            </a>
+            <a href="#wish-section" class="btn btn-secondary">
+              <span>Make a wish 🎂</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Featured Hero Collage Grid (Interactive: opens exact photo in lightbox) -->
+        <div class="hero-collage" aria-label="Featured birthday memory collage">
+          <div class="hero-polaroid" data-photo-id="1" tabindex="0" role="button" aria-label="View photo 1, Festive celebration">
+            <div class="tape" aria-hidden="true"></div>
+            <img src="assets/photos/photo-01.jpeg" alt="Festive celebration photograph" loading="eager" />
+            <p class="hero-polaroid-label">Festive celebration ✨</p>
+          </div>
+          <div class="hero-polaroid" data-photo-id="5" tabindex="0" role="button" aria-label="View photo 5, Celebration time">
+            <div class="tape tape-right" aria-hidden="true"></div>
+            <img src="assets/photos/photo-05.jpeg" alt="Celebration time photograph" loading="eager" />
+            <p class="hero-polaroid-label">Celebration time</p>
+          </div>
+          <div class="hero-polaroid" data-photo-id="3" tabindex="0" role="button" aria-label="View photo 3, Unfiltered laughter">
+            <div class="tape tape-left" aria-hidden="true"></div>
+            <img src="assets/photos/photo-03.jpeg" alt="Unfiltered laughter photograph" loading="eager" />
+            <p class="hero-polaroid-label">Unfiltered laughter</p>
+          </div>
+          <div class="hero-polaroid" data-photo-id="11" tabindex="0" role="button" aria-label="View photo 11, Traditional festive look">
+            <div class="tape" aria-hidden="true"></div>
+            <img src="assets/photos/photo-11.jpeg" alt="Traditional festive celebration photograph" loading="eager" />
+            <p class="hero-polaroid-label">Traditional festive look</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SCREEN 3: THE PHOTO SCRAPBOOK (CENTERPIECE)
+         ====================================================================== -->
+    <section id="scrapbook-section" class="scrapbook-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">A Little Scrapbook</span>
+          <h2 class="section-title">Collected Memories</h2>
+          <p class="section-subtitle">
+            Twenty-three moments captured in time. Tap any photo to see it in full view, read the note, and flip through the collection.
+          </p>
+        </div>
+
+        <!-- Category Filter Tabs with Accessibility -->
+        <div class="filter-container" role="tablist" aria-label="Photo categories">
+          <button class="filter-tab active" data-filter="all" data-label="All Memories" role="tab" aria-selected="true" aria-pressed="true">All Memories (23)</button>
+          <button class="filter-tab" data-filter="festive moments" data-label="Festive Moments" role="tab" aria-selected="false" aria-pressed="false">Festive Moments (6)</button>
+          <button class="filter-tab" data-filter="candid chaos" data-label="Candid Chaos" role="tab" aria-selected="false" aria-pressed="false">Candid Chaos (6)</button>
+          <button class="filter-tab" data-filter="little everyday moments" data-label="Little Everyday Moments" role="tab" aria-selected="false" aria-pressed="false">Little Everyday Moments (5)</button>
+          <button class="filter-tab" data-filter="celebration mode" data-label="Celebration Mode" role="tab" aria-selected="false" aria-pressed="false">Celebration Mode (6)</button>
+        </div>
+
+        <!-- Scrapbook Photo Grid (Populated dynamically from CONFIG.photos) -->
+        <div id="gallery-grid" class="gallery-grid" aria-label="Birthday photo gallery"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SCREEN 4: THE "MAKE A WISH" INTERACTION
+         ====================================================================== -->
+    <section id="wish-section" class="wish-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">A Moment for You</span>
+          <h2 id="wish-title" class="section-title">Before you go, make a wish! 🎂</h2>
+          <p id="wish-sub" class="section-subtitle">Take a second, close your eyes, and blow out the candles.</p>
+        </div>
+
+        <div class="cake-card">
+          <!-- SVG Birthday Cake with Animated Flame -->
+          <div class="cake-illustration-wrapper" aria-hidden="true">
+            <svg viewBox="0 0 240 220" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cake Stand -->
+              <ellipse cx="120" cy="200" rx="90" ry="12" fill="#E2D6CB" />
+              <path d="M110 200 L114 216 L126 216 L130 200 Z" fill="#D4A359" />
+              
+              <!-- Bottom Cake Layer -->
+              <rect x="45" y="145" width="150" height="48" rx="8" fill="#F4EBE1" stroke="#3D1E36" stroke-width="2" />
+              <!-- Decorative Frosting Swirls -->
+              <path d="M45 160 Q 60 172, 75 160 Q 90 172, 105 160 Q 120 172, 135 160 Q 150 172, 165 160 Q 180 172, 195 160" fill="none" stroke="#E28574" stroke-width="4" stroke-linecap="round" />
+              
+              <!-- Top Cake Layer -->
+              <rect x="65" y="105" width="110" height="42" rx="6" fill="#FFFFFF" stroke="#3D1E36" stroke-width="2" />
+              <path d="M65 116 Q 78 126, 92 116 Q 106 126, 120 116 Q 134 126, 148 116 Q 162 126, 175 116" fill="none" stroke="#D4A359" stroke-width="3.5" stroke-linecap="round" />
+              
+              <!-- Candle 1 (Left) -->
+              <rect x="85" y="68" width="8" height="38" rx="3" fill="#D4A359" stroke="#3D1E36" stroke-width="1.5" />
+              <line x1="89" y1="68" x2="89" y2="58" stroke="#3D1E36" stroke-width="2" stroke-linecap="round" />
+              <g class="candle-flame flame-1">
+                <path d="M89 38 C 84 48, 83 54, 89 57 C 95 54, 94 48, 89 38 Z" fill="#F3A69A" />
+                <path d="M89 44 C 86 50, 86 53, 89 55 C 92 53, 92 50, 89 44 Z" fill="#D4A359" />
+              </g>
+              <circle class="smoke-puff smoke-1" cx="89" cy="45" r="7" fill="#B0A0AB" />
+
+              <!-- Candle 2 (Center) -->
+              <rect x="116" y="60" width="8" height="46" rx="3" fill="#E28574" stroke="#3D1E36" stroke-width="1.5" />
+              <line x1="120" y1="60" x2="120" y2="50" stroke="#3D1E36" stroke-width="2" stroke-linecap="round" />
+              <g class="candle-flame flame-2">
+                <path d="M120 30 C 115 40, 114 46, 120 49 C 126 46, 125 40, 120 30 Z" fill="#E28574" />
+                <path d="M120 36 C 117 42, 117 45, 120 47 C 123 45, 123 42, 120 36 Z" fill="#F7E5C4" />
+              </g>
+              <circle class="smoke-puff smoke-2" cx="120" cy="38" r="8" fill="#B0A0AB" />
+
+              <!-- Candle 3 (Right) -->
+              <rect x="147" y="68" width="8" height="38" rx="3" fill="#6E8B74" stroke="#3D1E36" stroke-width="1.5" />
+              <line x1="151" y1="68" x2="151" y2="58" stroke="#3D1E36" stroke-width="2" stroke-linecap="round" />
+              <g class="candle-flame flame-3">
+                <path d="M151 38 C 146 48, 145 54, 151 57 C 157 54, 156 48, 151 38 Z" fill="#D4A359" />
+                <path d="M151 44 C 148 50, 148 53, 151 55 C 154 53, 154 50, 151 44 Z" fill="#F3A69A" />
+              </g>
+              <circle class="smoke-puff smoke-3" cx="151" cy="45" r="7" fill="#B0A0AB" />
+            </svg>
+          </div>
+
+          <button id="make-wish-btn" class="btn btn-primary btn-gold" aria-label="Make a wish and blow out candles">
+            <span>Blow out the candles & make a wish 🎂</span>
+          </button>
+
+          <!-- Wish Message Reveal Box -->
+          <div id="wish-reveal-box" class="wish-reveal-box" role="status" aria-live="polite">
+            <p id="wish-text" class="wish-text">
+              "Wishing you happiness, good health, exciting adventures, and plenty of reasons to smile every single day. Here is to a fantastic year ahead!"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SCREEN 5: A LITTLE BIRTHDAY LETTER
+         ====================================================================== -->
+    <section id="letter-section" class="letter-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">A Note for the Year Ahead</span>
+          <h2 class="section-title">A Birthday Letter</h2>
+          <p class="section-subtitle">A few warm words written just for you.</p>
+        </div>
+
+        <div class="letter-wrapper">
+          <article class="letter-card">
+            <div class="letter-header-strip">
+              <div class="letter-wax-seal" aria-hidden="true">N</div>
+              <span id="letter-date" class="letter-date">October 2026</span>
+            </div>
+
+            <div id="letter-body" class="letter-body">
+              <p id="letter-content" class="letter-paragraphs">
+                Happy birthday, Nitya! 🥳
+
+                Hope you have the best day, with lots of laughs, good food, and people who make you happy. Wishing you a year full of exciting moments, new experiences, and plenty of reasons to smile.
+
+                Enjoy your day, have fun, and make lots of lovely memories!
+
+                Birthday wishes,
+
+                yuvi
+              </p>
+            </div>
+
+            <div class="letter-toggle-container">
+              <button id="toggle-letter-btn" class="btn btn-secondary" aria-label="Toggle birthday letter view">
+                <span>Read full letter ✉️</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SCREEN 6: OPTIONAL VIDEO MEMORY
+         ====================================================================== -->
+    <section id="video-section" class="video-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Motion Snapshot</span>
+          <h2 class="section-title">A Little Video Memory</h2>
+          <p class="section-subtitle">A clip from the celebration moments.</p>
+        </div>
+
+        <div class="video-card">
+          <div class="video-frame">
+            <video 
+              id="birthday-video" 
+              controls 
+              preload="metadata" 
+              playsinline
+              aria-label="Birthday celebration video clip"
+            >
+              <source src="assets/video/birthday-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FINAL SECTION: THE BIRTHDAY CLOSING
+         ====================================================================== -->
+    <section class="closing-section">
+      <div class="container">
+        <h2 id="closing-title" class="closing-title">Keep shining, Nitya.<br />Your next chapter starts now. ✨</h2>
+        <div class="closing-actions">
+          <button id="celebrate-again-btn" class="btn btn-primary btn-gold" aria-label="Trigger confetti celebration">
+            <span>Celebrate again 🎊</span>
+          </button>
+          <a href="#scrapbook-section" class="btn btn-secondary">
+            <span>Back to memories ↑</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FULL-SCREEN LIGHTBOX MODAL (Accessible with focus management)
+       ======================================================================== -->
+  <div id="lightbox-modal" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
+    <span id="lightbox-counter" class="lightbox-counter" aria-live="polite">1 of 23</span>
+    
+    <button id="lightbox-close" class="lightbox-btn lightbox-close" aria-label="Close photo view">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+
+    <button id="lightbox-prev" class="lightbox-btn lightbox-prev" aria-label="Previous photo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+    </button>
+
+    <button id="lightbox-next" class="lightbox-btn lightbox-next" aria-label="Next photo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6" />
+      </svg>
+    </button>
+
+    <div class="lightbox-content">
+      <div class="lightbox-image-frame">
+        <img id="lightbox-img" class="lightbox-image" src="" alt="Full view memory" />
+        <div class="lightbox-info">
+          <p id="lightbox-caption" class="lightbox-caption">Memory Title</p>
+          <p id="lightbox-details" class="lightbox-details">Category description</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        <span class="footer-sparkle" aria-hidden="true">✨</span>
+        Crafted with warmth by yuvi for Nitya's Birthday · A Little World of Nitya
+      </p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript Controller -->
+  <script src="./script.js"></script>
+</body>
+</html>
